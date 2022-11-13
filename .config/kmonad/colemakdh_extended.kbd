@@ -20,6 +20,11 @@
   ;; output (uinput-sink "My KMonad output")
   output (uinput-sink "My KMonad output" "/bin/sleep 1 && /bin/setxkbmap -option compose:ralt -option caps:none")
   cmp-seq ralt
+  
+  ;; For Windows
+  ;; input  (low-level-hook)
+  ;; output (send-event-sink)
+  ;; .\kmonad-0.4.1-win.exe .\colemakdh_extended.kbd
 
   ;; Comment this if you want unhandled events not to be emitted
   fallthrough false
