@@ -25,6 +25,8 @@
   ;; input  (low-level-hook)
   ;; output (send-event-sink)
   ;; .\kmonad-0.4.1-win.exe .\colemakdh_extended.kbd
+  ;; Get executable from releases:
+  ;; https://github.com/kmonad/kmonad/releases
 
   ;; Comment this if you want unhandled events not to be emitted
   fallthrough false
