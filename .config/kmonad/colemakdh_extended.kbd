@@ -1,0 +1,184 @@
+;; Layout for ANSI TKL (80%)
+;; Primary layout is Colemak-DH with extend symbol layer on caps.
+;; Media keys are above arrows, also on symbol layer.
+;; Switch to qwerty and back with 'caps + \'.
+;; NOTE: holding symbol keys to repeat them won't work, as they are tap-hold macros (see below).
+
+;; TODO: fill empty base layer keys with something (`, -, +, etc.)
+;; TODO: fill empty shift layer keys (number keys, since all number symbols are remapped now).
+;; TODO: fill final slots in symbol layer (ctrl key combos? other symbols?)
+
+;; Handy commands:
+;; sudo evtest (see key events)
+;; wev (see key events in wayland)
+;; kmonad -d my_layout.kbd (validate config without activating)
+;; kmonad my_layout.kbd (activate config)
+
+(defcfg
+  ;; For Linux
+  input  (device-file "/dev/input/by-id/usb-DuckyChannel_International_Co.__Ltd._Ducky_Keyboard-event-kbd")
+  ;; output (uinput-sink "My KMonad output")
+  output (uinput-sink "My KMonad output" "/bin/sleep 1 && /bin/setxkbmap -option compose:ralt -option caps:none")
+  cmp-seq ralt
+
+  ;; Comment this if you want unhandled events not to be emitted
+  fallthrough false
+
+  ;; Set this to false to disable any command-execution in KMonad
+  allow-cmd false
+)
+
+;; This is the real representation of your actual keyboard.
+(defsrc
+  esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12        ssrq slck pause
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc  ins  home pgup
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \     del  end  pgdn
+  caps a    s    d    f    g    h    j    k    l    ;    '    ret
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft                 up       
+  lctl lmet lalt           spc            ralt rmet cmp  rctl             left down rght
+)
+
+;; Empty ANSI TKL template.
+;; (deflayer default
+;;   _    _    _    _    _    _    _    _    _    _    _    _    _          _    _    _
+;;   _    _    _    _    _    _    _    _    _    _    _    _    _    _     _    _    _
+;;   _    _    _    _    _    _    _    _    _    _    _    _    _    _     _    _    _
+;;   _    _    _    _    _    _    _    _    _    _    _    _    _
+;;   _    _    _    _    _    _    _    _    _    _    _    _                    _
+;;   _    _    _              _              _    _    _    _               _    _    _
+;; )
+
+;; (deflayer default
+;;   esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12        ssrq slck pause
+;;   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc  ins  home pgup
+;;   tab  q    w    e    r    t    y    u    i    o    p    [    ]    \     del  end  pgdn
+;;   @sym a    s    d    f    g    h    j    k    l    ;    bspc ret
+;;   lsft z    x    c    v    b    n    m    ,    .    /    rsft                 up       
+;;   lctl lmet lalt           spc            ralt rmet cmp @sym             left down rght
+;; )
+
+;; The first custom layer is the one that gets activated when kmonad is started.
+;; In this case it is a modified colemakdh. (XX blocks key press)
+(deflayer colemakdh
+  esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12        ssrq slck pause
+  XX   1    2    3    4    5    6    7    8    9    0    XX   XX    XX   ins  home pgup
+  tab  q    w    f    p    b    j    l    u    y    @:   esc  XX    XX   del  end  pgdn
+  @csm a    r    s    t    g    m    n    e    i    o    bspc ret
+  lsft x    c    d    v    z    k    h    ,    .    @-   rsft                 up       
+  lctl lmet lalt           spc            ralt rmet cmp @csm             left down rght
+)
+
+;; We swap to the qwerty layer when the @qwe function is called.
+;; In this case it is called when we press caps+\
+(deflayer qwerty
+  esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12        ssrq slck pause
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc  ins  home pgup
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \     del  end  pgdn
+  @qsm a    s    d    f    g    h    j    k    l    ;    bspc ret
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft                 up       
+  lctl lmet lalt           spc            ralt rmet cmp @qsm             left down rght
+)
+
+;; left-control shortcuts
+(defalias
+  C- (around lctl X)
+  S- (around lsft X)
+  cpy C-c
+  cut C-x
+  pst C-v
+  udo C-z   ;; undo is also redo if you hold shift.
+  rdo C-S-z ;; ctrl+shift+z to redo. Actually unnecessary though.
+  cmt C-/   ;; ctrl+/ (comment)
+)
+
+;; We have to define our symbols this way, else when they are pressed simultaneously,
+;; for some reason they are either not pressed, or 'capitalised'. ie. '=' becomes '+'.
+;; The problem likely arises from this situation:
+;; A key is pressed that is from a shift-layer (ie. '*').
+;; Before that key is released, a key from the base layer is pressed (ie. '[').
+;; Because the first key is still pressed, we are still technically in the shift-layer.
+;; Thus, the second key that is pressed is also has 'shift' applied (ie. resulting in '{').
+;; See 'modded buttons' section in keymap/tutorial.kbd.
+;; It is also a problem when pressing base and shift versions of the same key, ie. '/' and '?'.
+;; Perhaps the only solution for now is to instant tap-hold all shift-layer symbols,
+;; and competing symbols such as ' and ".
+;; XX is used here to force the key-up event for the prior key.
+;; #(x XX) defines a macro that presses x and then presses XX (no key), forcing the key-up for x.
+;; 0 means hold the key for 0 milliseconds.
+(defalias
+  ;; Shift-layer on number row
+  ! (tap-hold 0 ! #(! XX))
+  @ (tap-hold 0 @ #(@ XX))
+  # (tap-hold 0 # #(# XX))
+  $ (tap-hold 0 $ #($ XX))
+  % (tap-hold 0 % #(% XX))
+  ^ (tap-hold 0 ^ #(^ XX))
+  & (tap-hold 0 & #(& XX))
+  * (tap-hold 0 * #(* XX))
+  0 (tap-hold 0 \) #(\) XX))
+  9 (tap-hold 0 \( #(\( XX))
+
+  ;; Shift-layer on symbol keys
+  } (tap-hold 0 } #(} XX))
+  { (tap-hold 0 { #({ XX))
+  < (tap-hold 0 < #(< XX))
+  > (tap-hold 0 > #(> XX))
+  : (tap-hold 0 : #(: XX))
+  ~ (tap-hold 0 ~ #(~ XX))
+  | (tap-hold 0 | #(| XX))
+  - (tap-hold 0 - #(\_ XX))
+  = (tap-hold 0 = #(+ XX))
+  ? (tap-hold 0 ? #(? XX))
+  qot (tap-hold 0 ' #(" XX))
+
+  ;; Base layer (non-shift) symbols: 
+  ;; (We still need to tap-hold some of these so they don't block each other. See note above.)
+  ;; ` - = [ ] \ ; ' , .  
+  ] (tap-hold 0 ] #(] XX))
+  [ (tap-hold 0 [ #([ XX))
+  ` (tap-hold 0 ` #(` XX))
+  ; (tap-hold 0 ; #(; XX))
+  ' (tap-hold 0 ' #(' XX))
+)
+
+(deflayer colemakdh-symbols
+  _    _    _    _    _    _    _    _    _    _    _    _    _          _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _     mute    playpause   volu
+  rght @udo _    @=   @*   @%   @$   @`   @qot @'   @;   _    _    @qwe  previoussong    nextsong    vold
+  XX   @@   @&   @?   @!   \\   @<   @9   @{   @[   /    del  _
+  _    _    @#   @~   @^   @|   @>   @0   @}   @]   -    _                    _
+  _    _    _              =              _    _    _    _               _    _    _
+)
+;; right-arrow on tab for terminal command completion.
+
+;; allow to return to colemakdh when pressing caps+\
+(deflayer qwerty-symbols
+  _    _    _    _    _    _    _    _    _    _    _    _    _          _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _     mute    playpause   volu
+  _    _    _    _    _    _    _    _    _    _    _    _    _    @cdh  previoussong    nextsong    vold
+  XX   _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _                    _
+  _    _    _              _              _    _    _    _               _    _    _
+)
+
+;; TODO: remap shift layer keys that are now empty due to symbol layer.
+;; (deflayer shift
+;;   _    _    _    _    _    _    _    _    _    _    _    _    _          _    _    _
+;;   _    _    _    _    _    _    _    _    _    _    _    _    _    _     _    _    _
+;;   _    _    _    _    _    _    _    _    _    _    _    _    _    _     _    _    _
+;;   _    _    _    _    _    _    _    _    _    _    _    _    _
+;;   _    _    _    _    _    _    _    _    _    _    _    _                    _
+;;   _    _    _              _              _    _    _    _               _    _    _
+;; )
+
+;; Hold down to activate caps extend layer
+(defalias csm (layer-toggle colemakdh-symbols))
+(defalias qsm (layer-toggle qwerty-symbols))
+
+;; Tap to swap out base layer between qwerty and colemakdh
+(defalias qwe (layer-switch qwerty))
+(defalias cdh (layer-switch colemakdh))
+
+;; caps is esc on tap, extend layer on hold.
+;; unfortunately this is not great in practice. press becomes delayed, as it is listening for key-up.
+;; (defalias csc (tap-next-release q @sym))
