@@ -1,6 +1,9 @@
 *
 !.gitignore
 !.bashrc
+!.profile
+!.vimrc
+!.zprofile
 !.config
 !.config/code-flags.conf
 !.config/electron-flags.conf
@@ -15,3 +18,9 @@
 !.config/rncbc.org/*
 !.config/sway
 !.config/sway/*
+!.config/waybar
+!.config/waybar/*
+!.config/waybar/scripts
+!.config/waybar/scripts/*
+!.config/wofi
+!.config/wofi/*

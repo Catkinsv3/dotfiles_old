@@ -1,0 +1,297 @@
+/* =============================================================================
+ *
+ * Waybar configuration
+ *
+ * Configuration reference: https://github.com/Alexays/Waybar/wiki/Configuration
+ *
+ * =========================================================================== */
+ 
+/* -----------------------------------------------------------------------------
+ * Styles
+ * -------------------------------------------------------------------------- */
+ 
+/* Colors (gruvbox) */
+@define-color black	#282828;
+@define-color red	#cc241d;
+@define-color green	#98971a;
+@define-color yellow	#d79921;
+@define-color blue	#458588;
+@define-color purple	#b16286;
+@define-color aqua	#689d6a;
+@define-color gray	#a89984;
+@define-color brgray	#928374;
+@define-color brred	#fb4934;
+@define-color brgreen	#b8bb26;
+@define-color bryellow	#fabd2f;
+@define-color brblue	#83a598;
+@define-color brpurple	#d3869b;
+@define-color braqua	#8ec07c;
+@define-color white	#ebdbb2;
+@define-color bg2	#504945;
+ 
+ 
+@define-color warning 	@bryellow;
+@define-color critical	@red;
+@define-color mode	@black;
+@define-color unfocused	@bg2;
+@define-color focused	@braqua;
+@define-color inactive	@purple;
+@define-color sound	@brpurple;
+@define-color network	@purple;
+@define-color memory	@green;
+@define-color cpu	@braqua;
+@define-color temp	@brgreen;
+@define-color layout	@bryellow;
+@define-color disk	@aqua;
+@define-color date	@black;
+@define-color time	@white;
+@define-color bluetooth	@blue;
+@define-color keyboard	@brgray;
+ 
+/* -----------------------------------------------------------------------------
+ * Keyframes
+ * -------------------------------------------------------------------------- */
+ 
+ @keyframes blink-critical {
+	to {
+		/*color: @white;*/
+		background-color: @critical;
+	}
+}
+ 
+/* -----------------------------------------------------------------------------
+ * Base styles
+ * -------------------------------------------------------------------------- */
+ 
+/* Reset all styles */
+* {
+	margin: 0;
+	padding: 0;
+	border-radius: 0;
+	border: none;
+	min-height: 0;
+}
+ 
+/* The whole bar */
+#waybar {
+    background: rgba(40, 40, 40, 0.8);
+    color: @white;
+	font-family: "JetBrains Mono", hack, "Font Awesome 6 Free";
+	font-size: 18px;
+}
+ 
+/* Each module */
+#battery,
+#clock,
+#cpu,
+#custom-keyboard-layout,
+#custom-scratchpad-indicator,
+#custom-temperature-monitor,
+#memory,
+#mode,
+#network,
+#pulseaudio,
+#temperature,
+#tray,
+#disk,
+#bluetooth,
+#backlight,
+#idle_inhibitor {
+    padding-left: 15px;
+    padding-right: 15px;
+	border-left: 1px solid rgb(67, 67, 67);
+}
+ 
+/* Each critical module */
+#mode,
+#memory.critical,
+#cpu.critical,
+#temperature.critical,
+#battery.critical.discharging {
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+	animation-name: blink-critical;
+	animation-duration: 1s;
+}
+ 
+/* Each warning */
+#network.disconnected,
+#memory.warning,
+#cpu.warning,
+#temperature.warning,
+#battery.warning.discharging {
+	color: @warning;
+}
+ 
+/* -----------------------------------------------------------------------------
+ * Tooltip styles
+ * -------------------------------------------------------------------------- */
+ 
+ tooltip {
+	color: black;
+	background-color: @bg2;
+	text-shadow: none;
+	border-radius: 5px;
+}
+ 
+tooltip label {
+	color: @white;
+	/* font-size: 28px; */
+	font-family: "JetBrains Mono", hack;
+	padding: 10px;
+}
+ 
+/* -----------------------------------------------------------------------------
+ * Module styles
+ * -------------------------------------------------------------------------- */
+ 
+ #mode {
+    color: @white;
+	background: @mode;
+    border-top: 2px solid white;
+    /* To compensate for the top border and still have vertical centering */
+    padding-bottom: 2px;
+}
+ 
+/* Workspaces stuff */
+#workspaces button {
+    border-top: 2px solid transparent;
+    /* To compensate for the top border and still have vertical centering */
+    padding-bottom: 2px;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: @white;
+	background: @unfocused;
+}
+ 
+/* Inactive (on unfocused output) */
+#workspaces button.visible {
+	color: @white;
+	background: @inactive;
+}
+ 
+/* Active (on focused output) */
+#workspaces button.focused {
+	color: @black;
+	background: @focused;
+}
+ 
+/* Contains an urgent window */
+#workspaces button.urgent {
+	color: @black;
+	background: @warning;
+}
+ 
+/* Style when cursor is on the button */
+#workspaces button:hover {
+	box-shadow: none;
+	text-shadow: none;
+	background: @black;
+	color: @white;
+}
+ 
+ 
+/* window title text */
+#window {
+    /* font-weight: bold; */
+	/* font-size: 22px; */
+	color: @white;
+	margin-right: 40px;
+	margin-left: 40px;
+}
+ 
+#taskbar button:hover {
+	background-color: red;
+}
+ 
+/* temperature */
+#temperature {
+	color: @temp;
+}
+ 
+#temperature.critical {
+    color: red;
+}
+ 
+/* cpu */
+#cpu {
+	color: @cpu;
+}
+ 
+#cpu.warning {
+	color: @warning;
+}
+ 
+#cpu.critical {
+	color: @critical;
+}
+ 
+/* memory */
+#memory {
+	color: @memory;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+ 
+#memory.warning {
+    color: @warning;
+}
+ 
+#memory.critical {
+    color: @critical;
+    animation-name: blink-critical;
+    animation-duration: 2s;
+}
+ 
+#disk {
+	color: @disk;
+}
+ 
+#bluetooth {
+	color: @bluetooth;
+}
+ 
+#network {
+    color: @network;
+}
+ 
+#network.disconnected {
+    color: @warning;
+}
+ 
+#pulseaudio {
+    color: @sound;
+}
+ 
+#pulseaudio.muted {
+    color: @warning;
+}
+ 
+#custom-keyboard-layout {
+	color: @keyboard;
+}
+
+#custom-scratchpad-indicator {
+	color: @keyboard;
+}
+
+#custom-temperature-monitor {
+	color: @temp;
+}
+ 
+#clock {
+	color: @time;
+    font-weight: bold;
+}
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+#tray {
+    /* No styles */
+}

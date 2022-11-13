@@ -1,0 +1,73 @@
+/* https://cloudninja.pw/docs/wofi.html */
+/* man 5 wofi (css selectors) */
+
+/* The name of the window itself */
+#window {
+  padding: 2px;
+  background-color: rgba(53, 59, 73, 0.97);
+  border: 3px solid #3b4252;
+  border-radius: 2px;
+  /*font-family: 'JetBrains Mono';*/
+  font-size: 18px;
+}
+
+/* The name of the search bar */
+#input {
+  border: 2px solid #5e81ac;
+  background-color: #4c566a;
+  color: #d8dee9;
+  padding: 3px 5px 3px 5px;
+  border-radius: 5px;
+}
+
+/* The name of the box containing all of the entries */
+#inner-box {
+  color: #d8dee9;
+  padding: 2px;
+  background-color: transparent;
+}
+
+/* The name of the box that contains everything */
+#outer-box {
+  margin: 15px;
+  background-color: transparent;
+}
+
+/* The name of the scrolled window containing all of the entries */
+#scroll {
+  margin-top: 10px;
+  background-color: transparent;
+  border: none;
+}
+
+/* The name of all images in entries displayed in image mode */
+#img {
+  background-color: transparent;
+  padding: 5px;
+}
+
+/* The name of all the text in entries */
+#text {
+  padding: 3px;
+  background-color: transparent;
+}
+
+#text:selected {
+  color: #d8dee9;
+}
+
+/* The name of all entries */
+#entry {
+  border-radius: 3px;
+  padding: 5px 5px;
+}
+
+/* The  name  of  all  entries currently selected */
+#entry:selected { /* #selected */
+background-color: #5e81ac;
+}
+
+/* The name of all entries currently unselected */
+/* #unselected {
+
+} */

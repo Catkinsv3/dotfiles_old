@@ -1,0 +1,32 @@
+# man wofi
+# man 5 wofi
+# man 7 wofi
+# man wofi-keys
+
+prompt=Search
+show=drun
+width=300
+lines=10
+hide_scroll=true
+
+# key_submit=Enter
+key_expand=Right
+# key_exit=
+
+# key_up=Up
+# key_down=Down
+key_left=
+key_right=
+
+key_forward=Down
+key_backward=Up
+
+# key_copy=Control_l-c
+
+allow_images=true
+allow_markup=true
+insensitive=true
+# matching=fuzzy
+# term=kitty
+# no_actions=true
+gtk_dark=true
