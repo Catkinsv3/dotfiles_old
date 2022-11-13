@@ -1,5 +1,11 @@
 *
 !.gitignore
+!.bashrc
 !.config
 !.config/kmonad
 !.config/kmonad/*
+!.config/code-flags.conf
+!.config/electron-flags.conf
+!.config/kitty
+!.config/kitty/*
+
