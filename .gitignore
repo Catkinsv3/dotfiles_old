@@ -8,4 +8,7 @@
 !.config/electron-flags.conf
 !.config/kitty
 !.config/kitty/*
+!.config/kitty/kitty-themes
+!.config/kitty/kitty-themes/themes
+!.config/kitty/kitty-themes/themes/*
 
