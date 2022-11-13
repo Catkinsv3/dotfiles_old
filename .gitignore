@@ -2,8 +2,6 @@
 !.gitignore
 !.bashrc
 !.config
-!.config/kmonad
-!.config/kmonad/*
 !.config/code-flags.conf
 !.config/electron-flags.conf
 !.config/kitty
@@ -11,4 +9,9 @@
 !.config/kitty/kitty-themes
 !.config/kitty/kitty-themes/themes
 !.config/kitty/kitty-themes/themes/*
-
+!.config/kmonad
+!.config/kmonad/*
+!.config/rncbc.org
+!.config/rncbc.org/*
+!.config/sway
+!.config/sway/*

@@ -1,0 +1,350 @@
+# Read `man 5 sway` for a complete reference.
+# https://github.com/swaywm/sway/wiki#configuration
+
+
+### Variables ###
+
+# Logo key. Use Mod1 for Alt, Mod4 for Windows key
+set $mod Mod4
+
+# Home row direction keys, like vim
+set $left h
+set $down j
+set $up k
+set $right l
+
+# Your preferred terminal emulator
+set $term kitty
+
+# Your preferred application launcher
+# Note: pass the final command to swaymsg so that the resulting window can be opened
+# on the original workspace that the command was run on.
+# set $menu wofi --show=drun --width=300 --lines=10 --allow-images --allow-markup --term=$term --insensitive --matching=fuzzy --prompt="" | xargs swaymsg exec --
+set $menu wofi | xargs swaymsg exec --
+
+
+
+### Output configuration ###
+
+# Wallpaper
+output * bg /home/catkins/Pictures/wallhaven-j5mz95.png fill
+# Can specify different wallpaper per monitor with: output DP-1 etc.
+
+# Monitors
+output DP-1 resolution 3440x1440@60Hz position 2560,0
+output HDMI-A-2 resolution 2560x1600@60Hz position 0,0
+# Note: see man sway-output for options
+# Note: transform 270, to set portrait monitor
+# Get the names of your outputs by running: swaymsg -t get_outputs
+
+
+
+### Idle configuration ###
+
+# Edit swaylock config in ~/.swaylock/config, check man swaylock.
+# -f detaches process, so that second timeout is able to fire.
+exec swayidle -w timeout 600 "swaylock -f" timeout 900 "swaymsg 'output * dpms off'" resume "swaymsg 'output * dpms on'" before-sleep "swaylock -f"
+
+# This will lock your screen after 300 seconds of inactivity, then turn off
+# your displays after another 300 seconds, and turn your screens back on when
+# resumed. It will also lock your screen before your computer goes to sleep.
+
+# Disable idle timeout when anything is fullscreen
+for_window [shell=".*"] inhibit_idle fullscreen
+
+
+
+### Input Configuration ###
+
+# Example configuration:
+#
+#   input "2:14:SynPS/2_Synaptics_TouchPad" {
+#       dwt enabled
+#       tap enabled
+#       natural_scroll enabled
+#       middle_emulation enabled
+#   }
+#
+# You can get the names of your inputs by running: swaymsg -t get_inputs
+# Read `man 5 sway-input` for more information about this section.
+
+
+
+### Keymap ###
+#input * {
+#    xkb_layout "us"
+#    xkb_variant "colemak"
+#    xkb_options "grp:win_space_toggle"
+#}
+
+# Gaps
+# A 10-pixel border around every window
+gaps inner 5
+gaps outer 0
+
+# Only enable gaps on a workspace when there is at least one container
+smart_gaps on
+
+# Only enable outer gaps when there is exactly one container
+smart_gaps inverse_outer
+
+# Activate smart borders (always)
+smart_borders on
+
+# Activate smart borders (only when there are effectively no gaps)
+smart_borders no_gaps
+
+### Window borders ###
+# class                 border  backgr. text    indicator child_border
+client.focused          #c9a0dc #c9a0dc #c9a0dc #c9a0dc   #c9a0dc
+client.unfocused	    #592970 #592970 #592970 #592970   #592970
+
+# Disable window titlebars
+default_border pixel 1
+
+
+
+### Key bindings ###
+
+# Start a terminal
+bindsym $mod+Return exec $term
+
+# Kill focused window
+bindsym $mod+x kill
+
+# Start your launcher
+bindsym $mod+Space exec $menu
+
+# Lock
+bindsym $mod+q exec swaylock
+
+# Lock and sleep
+bindsym $mod+Shift+q exec swaylock -f && sleep 2 && systemctl suspend
+
+# Open clipboard manager
+bindsym $mod+v exec copyq toggle
+# Get app id with: swaymsg -t get_tree
+# any criteria can go in the square brackets, even regex.
+# Also can search on more fields than just app_id.
+for_window [app_id="com.github.hluk.copyq"] floating enable
+for_window [app_id="com.github.hluk.copyq"] resize set width 20 ppt height 90 ppt
+# TODO: use sudo pacman -Fl copyq to see location of theme css files. Modify theme.
+
+for_window [app_id="pavucontrol"] floating enable
+for_window [app_id="pavucontrol"] resize set width 18 ppt height 50 ppt
+for_window [app_id="pavucontrol"] move position 80 ppt 0 ppt
+
+for_window [class="qpwgraph"] floating enable
+for_window [class="qpwgraph"] resize set width 40 ppt height 90 ppt
+
+
+for_window [title="."] title_format "%title [%shell]"
+
+# Drag floating windows by holding down $mod and left mouse button.
+# Resize them with right mouse button + $mod.
+# Despite the name, also works for non-floating windows.
+# Change normal to inverse to use left mouse button for resizing and right
+# mouse button for dragging.
+# Note: This seems to crash sway more often than not
+floating_modifier $mod normal
+
+# Reload the configuration file
+bindsym $mod+Shift+c reload
+
+# Exit sway (logs you out of your Wayland session)
+bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+
+# Volume keybindings
+# bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+# bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+# bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+
+
+
+### Screenshot to clipboard ###
+
+# Capture specified area
+bindsym $mod+Shift+s exec grim -g "$(slurp -d)" - | wl-copy -t image/png
+
+# Capture focused monitor
+bindsym Print exec grim -o $(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name') - | wl-copy -t image/png
+
+# Capture all monitors
+bindsym $mod+Print exec grim - | wl-copy -t image/png
+
+
+
+### Movement ###
+
+# Move your focus around
+bindsym $mod+$left focus left
+bindsym $mod+$down focus down
+bindsym $mod+$up focus up
+bindsym $mod+$right focus right
+# Or use $mod+[up|down|left|right]
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# Move the focused window with the same, but add Shift
+bindsym $mod+Shift+$left move left
+bindsym $mod+Shift+$down move down
+bindsym $mod+Shift+$up move up
+bindsym $mod+Shift+$right move right
+# Ditto, with arrow keys
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+
+
+### Workspaces ###
+
+# Switch to workspace
+bindsym $mod+1 workspace number 1
+bindsym $mod+2 workspace number 2
+bindsym $mod+3 workspace number 3
+bindsym $mod+4 workspace number 4
+bindsym $mod+5 workspace number 5
+bindsym $mod+6 workspace number 6
+bindsym $mod+7 workspace number 7
+#  bindsym $mod+8 workspace number 8
+#  bindsym $mod+9 workspace number 9
+#  bindsym $mod+0 workspace number 10
+
+# Move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace number 1
+bindsym $mod+Shift+2 move container to workspace number 2
+bindsym $mod+Shift+3 move container to workspace number 3
+bindsym $mod+Shift+4 move container to workspace number 4
+bindsym $mod+Shift+5 move container to workspace number 5
+bindsym $mod+Shift+6 move container to workspace number 6
+bindsym $mod+Shift+7 move container to workspace number 7
+#  bindsym $mod+Shift+8 move container to workspace number 8
+#  bindsym $mod+Shift+9 move container to workspace number 9
+#  bindsym $mod+Shift+0 move container to workspace number 10
+# Note: workspaces can have any name you want, not just numbers.
+# We just use 1-10 as the default.
+
+# Launch apps in certain workspaces
+# assign [class="^discord$"] → 5
+
+
+### Layout ###
+
+# You can "split" the current object of your focus with
+# $mod+b or $mod+v, for horizontal and vertical splits
+# respectively.
+bindsym $mod+n splith
+bindsym $mod+m splitv
+
+bindsym $mod+y split toggle
+
+# Switch the current container between different layout styles
+bindsym $mod+i layout tabbed
+bindsym $mod+o layout stacking
+bindsym $mod+p layout toggle split
+
+# Make the current focus fullscreen
+bindsym $mod+f fullscreen
+
+# Toggle the current focus between tiling and floating mode
+bindsym $mod+Shift+z floating toggle
+
+# Swap focus between the tiling area and the floating area
+bindsym $mod+z focus mode_toggle
+
+# Move focus to the parent container
+bindsym $mod+a focus parent
+
+# https://wiki.archlinux.org/title/Sway#Custom_keybindings
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+# bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+# bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
+# bindsym XF86MonBrightnessUp exec brightnessctl set 5%+
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+# bindsym XF86Search exec $menu
+
+### Scratchpad ###
+
+# Sway has a "scratchpad", which is a bag of holding for windows.
+# You can send windows there and get them back later.
+
+# Move the currently focused window to the scratchpad
+bindsym $mod+Shift+minus move scratchpad
+
+# Show the next scratchpad window or hide the focused scratchpad window.
+# If there are multiple scratchpad windows, this command cycles through them.
+bindsym $mod+minus scratchpad show
+
+
+
+### Resizing containers ###
+# Possibility for defining custom modes here?
+
+# Enter resize mode
+bindsym $mod+r mode "resize"
+
+mode "resize" {
+    # left will shrink the containers width
+    # right will grow the containers width
+    # up will shrink the containers height
+    # down will grow the containers height
+    bindsym $left resize shrink width 10px
+    bindsym $down resize grow height 10px
+    bindsym $up resize shrink height 10px
+    bindsym $right resize grow width 10px
+ 
+    # Ditto, with arrow keys
+    bindsym Left resize shrink width 10px
+    bindsym Down resize grow height 10px
+    bindsym Up resize shrink height 10px
+    bindsym Right resize grow width 10px
+
+    # Faster
+    bindsym Shift+Left resize shrink width 100px
+    bindsym Shift+Down resize grow height 100px
+    bindsym Shift+Up resize shrink height 100px
+    bindsym Shift+Right resize grow width 100px
+
+    # Even Faster
+    bindsym Ctrl+Shift+Left resize shrink width 200px
+    bindsym Ctrl+Shift+Down resize grow height 200px
+    bindsym Ctrl+Shift+Up resize shrink height 200px
+    bindsym Ctrl+Shift+Right resize grow width 200px
+ 
+    # Return to default mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+
+
+### Autostart ###
+
+# Clipboard manager
+exec copyq
+
+# Notifications
+# exec mako
+
+# exec_always {
+# }
+
+
+
+### Status Bar ###
+ 
+bar {
+    swaybar_command waybar
+}
+
+
+
+include /etc/sway/config.d/*
