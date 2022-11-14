@@ -26,6 +26,7 @@ stack build --flag kmonad:dext --extra-include-dirs=c_src/mac/Karabiner-DriverKi
 Kmonad binary will now be installed to somewhere like:
 /Users/christopheratkinson/kmonad/kmonad/.stack-work/install/aarch64-osx/ac3c61d15f02cd084bf651524811be0f38ffca7adac6cedf1ee60cfbac7c7fcc/8.10.7/bin/kmonad
 We can copy this binary and put it wherever we like.
+(Remember to update Input Monitoring permissions for the kmonad binary if you move it)
 
 We can activate our .kbd (sudo is required):
 sudo path/to/kmonad path/to/config.kbd
@@ -63,6 +64,7 @@ path/to/kmonad
 (karabiner_grabber and karabiner_observer should also have these permissions)
 (your terminal may also need this permission)
 NOTE: To find the install location of any package, use `which package_name`.
+NOTE: Press Cmd+Shift+. to show hidden files/folders in finder.
 
 All done, your kmonad layout should now be applied automatically on boot.
 
