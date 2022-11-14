@@ -68,6 +68,7 @@ NOTE: Press Cmd+Shift+. to show hidden files/folders in finder.
 
 All done, your kmonad layout should now be applied automatically on boot.
 
+TODO: Currently activates *after* login. Need to figure out how to activate on boot. /System/Library/LaunchDaemons?
 TODO: Modify layout for builtin keyboard.
 TODO: Separate layout per input device (can this work on macos?)
 TODO: https://github.com/kmonad/kmonad/blob/master/doc/faq.md#q-how-to-use-the-special-features-printed-on-apple-function-keys
