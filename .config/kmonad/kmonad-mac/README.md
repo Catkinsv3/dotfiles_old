@@ -68,6 +68,20 @@ NOTE: Press Cmd+Shift+. to show hidden files/folders in finder.
 
 All done, your kmonad layout should now be applied automatically on boot.
 
+Confirm kmonad is in the launchd service list:
+sudo launchctl list | grep kmonad
+(launchctl list without sudo shows the user's services, not root services)
+
+Start service manually:
+sudo launchctl load -w /Library/LaunchDaemons/local.kmonad.plist
+
+Stop service manually:
+sudo launchctl unload /Library/LaunchDaemons/local.kmonad.plist
+
+Restart running service:
+sudo launchctl kickstart -k /Library/LaunchDaemons/local.kmonad.plist
+
+TODO: make symlink to plist in dotfiles directory.
 TODO: Currently activates *after* login. Need to figure out how to activate on boot. /System/Library/LaunchDaemons?
 TODO: Modify layout for builtin keyboard.
 TODO: Separate layout per input device (can this work on macos?)

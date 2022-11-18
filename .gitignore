@@ -4,6 +4,7 @@
 !.profile
 !.vimrc
 !.zprofile
+!.zshrc
 !.config
 !.config/code-flags.conf
 !.config/electron-flags.conf
