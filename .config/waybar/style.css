@@ -289,7 +289,9 @@ tooltip label {
     font-weight: bold;
 }
  
- 
+#idle_inhibitor {
+	color: @temp;
+}
  
  
  
