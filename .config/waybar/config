@@ -39,7 +39,7 @@
 		"network",
 		"pulseaudio",
 		"custom/wkblayout",
-		"custom/keyboard-layout",
+		// "custom/keyboard-layout",
 		"idle_inhibitor",
 		// "custom/poweroff",
 		"clock",
@@ -59,19 +59,19 @@
  
 	"sway/workspaces": {
 		"disable-scroll": true,
-		"all-outputs": false,
+		"all-outputs": true,
 		"format": "{icon} {name}",
 		"format-icons": {
-			"1": " ",
-			"2": "",
-			"3": "",
-			"4": "",
-			"5": "",
-			"6": "",
-			"7": " ",
-			"urgent": "<span color='#e85c5c'></span>",
-			"focused": "<span color='#8af0f0'></span>",
-			"default": "<span color='#b8b8b8'></span>"
+			// "1": "",
+			// "2": "",
+			// "3": "",
+			// "4": "",
+			// "5": "",
+			// "6": "",
+			// "7": " ",
+			"urgent": "",
+			"focused": "",
+			"default": ""
 		}
 	},
 
@@ -128,7 +128,7 @@
 	},
  
 	"cpu": {
-		"interval": 5,
+		"interval": 1,
 		"format": "{usage:02}% ", // Icon: microchip
 		"states": {
 			"warning": 70,
@@ -172,7 +172,7 @@
         "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
         "format-disconnected": "Disconnected ⚠",
 		"tooltip-format": "{essid} {frequency}GHz\nSignal: {signalStrength}% ({signaldBm}dB)\n{ifname}: {ipaddr}",
-		"interval": 2
+		"interval": 1
 		//"on-click": "cmst"
 	},
  

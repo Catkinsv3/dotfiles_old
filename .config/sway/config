@@ -77,27 +77,21 @@ for_window [shell=".*"] inhibit_idle fullscreen
 #    xkb_options "grp:win_space_toggle"
 #}
 
-# Gaps
-# A 10-pixel border around every window
-gaps inner 5
+# Gaps around windows
+gaps inner 8
+# Gap around screen edge
 gaps outer 0
 
 # Only enable gaps on a workspace when there is at least one container
 smart_gaps on
-
-# Only enable outer gaps when there is exactly one container
-smart_gaps inverse_outer
-
-# Activate smart borders (always)
-smart_borders on
 
 # Activate smart borders (only when there are effectively no gaps)
 smart_borders no_gaps
 
 ### Window borders ###
 # class                 border  backgr. text    indicator child_border
-client.focused          #c9a0dc #c9a0dc #c9a0dc #c9a0dc   #c9a0dc
-client.unfocused	    #592970 #592970 #592970 #592970   #592970
+client.focused          #7bb75b #7bb75b #7bb75b #7bb75b   #7bb75b
+client.unfocused	    #343835 #343835 #343835 #343835   #343835
 
 # Disable window titlebars
 default_border pixel 1
