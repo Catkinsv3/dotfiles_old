@@ -140,7 +140,7 @@
  
 tooltip label {
 	color: @white;
-	/* font-size: 28px; */
+	font-size: 18px;
 	font-family: "JetBrains Mono", hack;
 	padding: 10px;
 }
