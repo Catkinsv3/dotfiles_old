@@ -16,9 +16,9 @@ call plug#end()
 " House keeping
 set tabstop=4 shiftwidth=4 softtabstop=4 expandtab smartindent
 set nu rnu
-" set background=dark
-"colorscheme darcula
-"set termguicolors
+"set background=dark
+colorscheme darcula
+set termguicolors
 syntax on
  
 " Relative line number toggling between files
