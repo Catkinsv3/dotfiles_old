@@ -12,19 +12,22 @@ Plug 'zivyangll/git-blame.vim'
 Plug 'vim-scripts/indentpython.vim'
 Plug 'kien/ctrlp.vim'
 call plug#end()
- 
-if &term =~ '256color'
-    " Disable Background Color Erase (BCE) so that color schemes
-    " work properly when Vim is used inside tmux and GNU screen.
-    set t_ut=
-endif
+
+set termguicolors
+
+" https://github.com/kovidgoyal/kitty/issues/108
+" vim hardcodes background color erase even if the terminfo file does
+" not contain bce (not to mention that libvte based terminals
+" incorrectly contain bce in their terminfo files). This causes
+" incorrect background rendering when using a color theme with a
+" background color.
+let &t_ut=''
 
 " House keeping
 set tabstop=4 shiftwidth=4 softtabstop=4 expandtab smartindent
 set nu rnu
 "set background=dark
 colorscheme darcula
-set termguicolors
 syntax on
  
 " Relative line number toggling between files
