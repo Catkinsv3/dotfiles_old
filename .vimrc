@@ -5,7 +5,7 @@ Plug 'tpope/vim-commentary'
 Plug 'wellle/context.vim'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'vim-airline/vim-airline'
-Plug 'morhetz/gruvbox'
+Plug 'doums/darcula'
 Plug 'preservim/nerdtree'
 Plug 'leafgarland/typescript-vim'
 Plug 'zivyangll/git-blame.vim'
@@ -16,8 +16,9 @@ call plug#end()
 " House keeping
 set tabstop=4 shiftwidth=4 softtabstop=4 expandtab smartindent
 set nu rnu
-set background=dark
-colorscheme gruvbox
+" set background=dark
+"colorscheme darcula
+"set termguicolors
 syntax on
  
 " Relative line number toggling between files
