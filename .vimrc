@@ -13,6 +13,12 @@ Plug 'vim-scripts/indentpython.vim'
 Plug 'kien/ctrlp.vim'
 call plug#end()
  
+if &term =~ '256color'
+    " Disable Background Color Erase (BCE) so that color schemes
+    " work properly when Vim is used inside tmux and GNU screen.
+    set t_ut=
+endif
+
 " House keeping
 set tabstop=4 shiftwidth=4 softtabstop=4 expandtab smartindent
 set nu rnu
