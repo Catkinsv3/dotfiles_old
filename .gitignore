@@ -1,6 +1,7 @@
 *
 !.gitignore
 !.bashrc
+!.p10k.zsh
 !.profile
 !.vimrc
 !.zprofile
