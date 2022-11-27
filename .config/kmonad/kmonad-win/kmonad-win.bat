@@ -8,4 +8,4 @@
 
 taskkill /IM kmonad-win.exe /F
 
-start "C:\Users\catki\Documents\dotfiles\.config\kmonad\kmonad-win.exe" "C:\Users\catki\Documents\dotfiles\.config\kmonad\colemakdh_extended_windows.kbd"
+start "C:\Users\catki\Documents\dotfiles\.config\kmonad\kmonad-win.exe" "C:\Users\catki\Documents\dotfiles\.config\kmonad\colemakdh_extended_win.kbd"

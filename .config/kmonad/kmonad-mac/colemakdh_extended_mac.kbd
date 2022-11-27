@@ -31,7 +31,7 @@
   ;; For MacOS
   ;; input  (iokit-name "my-keyboard-product-string")
   input  (iokit-name)
-  output (kext)
+  output (kext)R
 
   ;; Comment this if you want unhandled events not to be emitted
   fallthrough false
@@ -47,7 +47,7 @@
   tab  q    w    e    r    t    y    u    i    o    p    [    ]    \     del  end  pgdn
   caps a    s    d    f    g    h    j    k    l    ;    '    ret
   lsft z    x    c    v    b    n    m    ,    .    /    rsft                 up
-  lctl lmet lalt           spc            ralt rmet cmp  rctl             left down rght
+  lctl lmet lalt           spc            ralt rmet cmp  rctl            left down rght
 )
 
 ;; Empty ANSI TKL template.
@@ -76,8 +76,8 @@
   XX   1    2    3    4    5    6    7    8    9    0    XX   XX    XX   ins  home pgup
   tab  q    w    f    p    b    j    l    u    y    @:   esc  XX    XX   del  end  pgdn
   @csm a    r    s    t    g    m    n    e    i    o    bspc ret
-  lsft x    c    d    v    z    k    h    ,    .    @-   rsft                   up
-  lmet lctl lalt           spc            ralt rctl cmp  @csm             left down rght
+  lsft x    c    d    v    z    k    h    ,    .    /    rsft                 up
+  lmet lctl lalt           spc            ralt rctl cmp  @csm            left down rght
 )
 
 ;; We swap to the qwerty layer when the @qwe function is called.
@@ -87,8 +87,8 @@
   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc  ins  home pgup
   tab  q    w    e    r    t    y    u    i    o    p    [    ]    \     del  end  pgdn
   @qsm a    s    d    f    g    h    j    k    l    ;    '    ret
-  lsft z    x    c    v    b    n    m    ,    .    /    rsft                   up
-  lmet lctl lalt           spc            ralt rctl cmp  @qsm             left down rght
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft                 up
+  lmet lctl lalt           spc            ralt rctl cmp  @qsm            left down rght
 )
 
 ;; left-control shortcuts
@@ -100,6 +100,7 @@
   pst C-v
   udo C-z   ;; undo is also redo if you hold shift.
   rdo C-S-z ;; ctrl+shift+z to redo. Actually unnecessary though.
+  sav C-s
   cmt C-/   ;; ctrl+/ (comment)
 )
 
@@ -155,10 +156,10 @@
 
 (deflayer colemakdh-symbols
   _    _    _    _    _    _    _    _    _    _    _    _    _          _    _    _
-  _    _    _    _    _    _    _    _    _    _    _    _    _    _     mute    playpause   volu
-  rght @udo _    @=   @*   @%   @$   @`   @qot @'   @;   _    _    @qwe  previoussong    nextsong    vold
-  XX   @@   @&   @!   @?   \\   @<   @9   @{   @[   /    del  _
-  _    _    @#   @~   @^   @|   @>   @0   @}   @]   -    _                    _
+  @sav @cut @cpy @pst _    _    _    _    _    _    _    _    _    _     mute    playpause   volu
+  @udo ret  _    @=   @*   @%   @$   @`   @qot @'   @;   _    _    @qwe  previoussong    nextsong    vold
+  XX   @@   @&   @!   @?   -    @<   @9   @{   @[   @-   del  _
+  _    _    @#   @~   @^   @|   @>   @0   @}   @]   \\   _                    _
   _    _    _              =              _    _    _    _               _    _    _
 )
 ;; right-arrow on tab for terminal command completion.

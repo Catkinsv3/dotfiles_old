@@ -28,6 +28,11 @@
   ;; Get executable from releases:
   ;; https://github.com/kmonad/kmonad/releases
 
+  ;; For MacOS
+  ;; input  (iokit-name "my-keyboard-product-string")
+  ;; input  (iokit-name)
+  ;; output (kext)
+
   ;; Comment this if you want unhandled events not to be emitted
   fallthrough false
 
@@ -41,8 +46,8 @@
   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc  ins  home pgup
   tab  q    w    e    r    t    y    u    i    o    p    [    ]    \     del  end  pgdn
   caps a    s    d    f    g    h    j    k    l    ;    '    ret
-  lsft z    x    c    v    b    n    m    ,    .    /    rsft                 up       
-  lctl lmet lalt           spc            ralt rmet cmp  rctl             left down rght
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft                 up
+  lctl lmet lalt           spc            ralt rmet cmp  rctl            left down rght
 )
 
 ;; Empty ANSI TKL template.
@@ -60,7 +65,7 @@
 ;;   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc  ins  home pgup
 ;;   tab  q    w    e    r    t    y    u    i    o    p    [    ]    \     del  end  pgdn
 ;;   @sym a    s    d    f    g    h    j    k    l    ;    bspc ret
-;;   lsft z    x    c    v    b    n    m    ,    .    /    rsft                 up       
+;;   lsft z    x    c    v    b    n    m    ,    .    /    rsft                 up
 ;;   lctl lmet lalt           spc            ralt rmet cmp @sym             left down rght
 ;; )
 
@@ -71,7 +76,7 @@
   XX   1    2    3    4    5    6    7    8    9    0    XX   XX    XX   ins  home pgup
   tab  q    w    f    p    b    j    l    u    y    @:   esc  XX    XX   del  end  pgdn
   @csm a    r    s    t    g    m    n    e    i    o    bspc ret
-  lsft x    c    d    v    z    k    h    ,    .    @-   rsft                 up       
+  lsft x    c    d    v    z    k    h    ,    .    @-   rsft                 up
   lctl lmet lalt           spc            ralt rmet cmp @csm             left down rght
 )
 
@@ -82,7 +87,7 @@
   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc  ins  home pgup
   tab  q    w    e    r    t    y    u    i    o    p    [    ]    \     del  end  pgdn
   @qsm a    s    d    f    g    h    j    k    l    ;    '    ret
-  lsft z    x    c    v    b    n    m    ,    .    /    rsft                 up       
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft                 up
   lctl lmet lalt           spc            ralt rmet cmp @qsm             left down rght
 )
 
@@ -95,6 +100,7 @@
   pst C-v
   udo C-z   ;; undo is also redo if you hold shift.
   rdo C-S-z ;; ctrl+shift+z to redo. Actually unnecessary though.
+  sav C-s
   cmt C-/   ;; ctrl+/ (comment)
 )
 
@@ -136,11 +142,11 @@
   - (tap-hold 0 - #(\_ XX))
   = (tap-hold 0 = #(+ XX))
   ? (tap-hold 0 ? #(? XX))
-  qot (tap-hold 0 ' #(" XX))
+  qot (tap-hold 0 ' #(" XX))  ;; "
 
-  ;; Base layer (non-shift) symbols: 
+  ;; Base layer (non-shift) symbols:
   ;; (We still need to tap-hold some of these so they don't block each other. See note above.)
-  ;; ` - = [ ] \ ; ' , .  
+  ;; ` - = [ ] \ ; ' , .
   ] (tap-hold 0 ] #(] XX))
   [ (tap-hold 0 [ #([ XX))
   ` (tap-hold 0 ` #(` XX))
@@ -150,10 +156,10 @@
 
 (deflayer colemakdh-symbols
   _    _    _    _    _    _    _    _    _    _    _    _    _          _    _    _
-  _    _    _    _    _    _    _    _    _    _    _    _    _    _     mute    playpause   volu
-  rght @udo _    @=   @*   @%   @$   @`   @qot @'   @;   _    _    @qwe  previoussong    nextsong    vold
-  XX   @@   @&   @!   @?   \\   @<   @9   @{   @[   /    del  _
-  _    _    @#   @~   @^   @|   @>   @0   @}   @]   -    _                    _
+  @sav @cut @cpy @pst _    _    _    _    _    _    _    _    _    _     mute    playpause   volu
+  @udo ret  _    @=   @*   @%   @$   @`   @qot @'   @;   _    _    @qwe  previoussong    nextsong    vold
+  XX   @@   @&   @!   @?   -    @<   @9   @{   @[   @-   del  _
+  _    _    @#   @~   @^   @|   @>   @0   @}   @]   \\   _                    _
   _    _    _              =              _    _    _    _               _    _    _
 )
 ;; right-arrow on tab for terminal command completion.
