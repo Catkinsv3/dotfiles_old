@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>Label</key>
+    <string>local.kmonad</string>
+    <key>Program</key>
+    <string>/Users/christopheratkinson/kmonad/kmonad/.stack-work/install/aarch64-osx/ac3c61d15f02cd084bf651524811be0f38ffca7adac6cedf1ee60cfbac7c7fcc/8.10.7/bin/kmonad</string>
+    <key>ProgramArguments</key>
+    <array>
+      <string>/Users/christopheratkinson/kmonad/kmonad/.stack-work/install/aarch64-osx/ac3c61d15f02cd084bf651524811be0f38ffca7adac6cedf1ee60cfbac7c7fcc/8.10.7/bin/kmonad</string>
+      <string>/Users/christopheratkinson/kmonad/colemakdh_extended_mac.kbd</string>
+    </array>
+    <key>RunAtLoad</key>
+    <true />
+    <key>StandardOutPath</key>
+    <string>/tmp/kmonad.stdout</string>
+    <key>StandardErrorPath</key>
+    <string>/tmp/kmonad.stderr</string>
+  </dict>
+</plist>

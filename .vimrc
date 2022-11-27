@@ -1,23 +1,41 @@
 call plug#begin()
-Plug 'tpope/vim-surround'
+Plug 'epope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
 Plug 'wellle/context.vim'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'vim-airline/vim-airline'
-Plug 'morhetz/gruvbox'
+Plug 'doums/darcula'
 Plug 'preservim/nerdtree'
 Plug 'leafgarland/typescript-vim'
 Plug 'zivyangll/git-blame.vim'
 Plug 'vim-scripts/indentpython.vim'
 Plug 'kien/ctrlp.vim'
+Plug 'easymotion/vim-easymotion'
 call plug#end()
- 
+
+nnoremap <space> <nop>
+let mapleader = ' '
+"map <space> <leader>
+"map <space><space> <leader><leader>
+"map <Leader> <Plug>(easymotion-prefix)
+
+set termguicolors
+
+" https://github.com/kovidgoyal/kitty/issues/108
+" vim hardcodes background color erase even if the terminfo file does
+" not contain bce (not to mention that libvte based terminals
+" incorrectly contain bce in their terminfo files). This causes
+" incorrect background rendering when using a color theme with a
+" background color.
+let &t_ut=''
+
 " House keeping
 set tabstop=4 shiftwidth=4 softtabstop=4 expandtab smartindent
 set nu rnu
 set background=dark
-colorscheme gruvbox
+set showcmd
+colorscheme darcula
 syntax on
  
 " Relative line number toggling between files

@@ -11,43 +11,44 @@
  * -------------------------------------------------------------------------- */
  
 /* Colors (gruvbox) */
-@define-color black	#282828;
-@define-color red	#cc241d;
-@define-color green	#98971a;
-@define-color yellow	#d79921;
-@define-color blue	#458588;
-@define-color purple	#b16286;
-@define-color aqua	#689d6a;
-@define-color gray	#a89984;
-@define-color brgray	#928374;
-@define-color brred	#fb4934;
-@define-color brgreen	#b8bb26;
-@define-color bryellow	#fabd2f;
-@define-color brblue	#83a598;
-@define-color brpurple	#d3869b;
-@define-color braqua	#8ec07c;
-@define-color white	#ebdbb2;
-@define-color bg2	#504945;
- 
- 
-@define-color warning 	@bryellow;
+@define-color black		#202020;
+@define-color red		#ce3e60;
+@define-color brred		#d18ea6;
+@define-color green		#7bb75b;
+@define-color brgreen	#50fa7b;
+@define-color yellow	#e8b32a;
+@define-color bryellow	#ffff00;
+@define-color blue		#4581eb;
+@define-color brblue	#6d9df1;
+@define-color pink		#fa54ff;
+@define-color brpink	#fb82ff;
+@define-color gray		#343835;
+@define-color brgray	#545454;
+@define-color white		#bbbbbb;
+
+@define-color warning 	@yellow;
 @define-color critical	@red;
-@define-color mode	@black;
-@define-color unfocused	@bg2;
-@define-color focused	@braqua;
-@define-color inactive	@purple;
-@define-color sound	@brpurple;
-@define-color network	@purple;
-@define-color memory	@green;
-@define-color cpu	@braqua;
-@define-color temp	@brgreen;
-@define-color layout	@bryellow;
-@define-color disk	@aqua;
-@define-color date	@black;
-@define-color time	@white;
-@define-color bluetooth	@blue;
-@define-color keyboard	@brgray;
- 
+@define-color mode		@black;
+@define-color unfocused	@black;
+@define-color focused	@green;
+@define-color inactive	@black;
+
+@define-color barbg		@black;
+@define-color bartext   @white;
+@define-color tooltipbg @black;
+
+@define-color sound		@white;
+@define-color network	@white;
+@define-color memory	@white;
+@define-color cpu		@white;
+@define-color temp		@white;
+@define-color layout	@white;
+@define-color disk		@white;
+@define-color date		@white;
+@define-color time		@white;
+@define-color bluetooth	@white;
+@define-color keyboard	@white;
+
 /* -----------------------------------------------------------------------------
  * Keyframes
  * -------------------------------------------------------------------------- */
@@ -74,8 +75,9 @@
  
 /* The whole bar */
 #waybar {
-    background: rgba(40, 40, 40, 0.8);
-    color: @white;
+    background: @barbg;
+	opacity: 0.9;
+    color: @bartext;
 	font-family: "JetBrains Mono", hack, "Font Awesome 6 Free";
 	font-size: 18px;
 }
@@ -99,7 +101,7 @@
 #idle_inhibitor {
     padding-left: 15px;
     padding-right: 15px;
-	border-left: 1px solid rgb(67, 67, 67);
+	border-left: 1px solid @gray;
 }
  
 /* Each critical module */
@@ -129,15 +131,16 @@
  * -------------------------------------------------------------------------- */
  
  tooltip {
-	color: black;
-	background-color: @bg2;
+	color: @white;
+	background-color: @tooltipbg;
 	text-shadow: none;
 	border-radius: 5px;
+	border: 1px solid @gray
 }
  
 tooltip label {
 	color: @white;
-	/* font-size: 28px; */
+	font-size: 18px;
 	font-family: "JetBrains Mono", hack;
 	padding: 10px;
 }
@@ -167,7 +170,7 @@ tooltip label {
  
 /* Inactive (on unfocused output) */
 #workspaces button.visible {
-	color: @white;
+	color: @brgray;
 	background: @inactive;
 }
  
@@ -187,7 +190,7 @@ tooltip label {
 #workspaces button:hover {
 	box-shadow: none;
 	text-shadow: none;
-	background: @black;
+	background: @brgray;
 	color: @white;
 }
  
@@ -286,7 +289,9 @@ tooltip label {
     font-weight: bold;
 }
  
- 
+#idle_inhibitor {
+	color: @temp;
+}
  
  
  
