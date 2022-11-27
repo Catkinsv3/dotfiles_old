@@ -31,7 +31,7 @@
   ;; For MacOS
   ;; input  (iokit-name "my-keyboard-product-string")
   input  (iokit-name)
-  output (kext)R
+  output (kext)
 
   ;; Comment this if you want unhandled events not to be emitted
   fallthrough false
