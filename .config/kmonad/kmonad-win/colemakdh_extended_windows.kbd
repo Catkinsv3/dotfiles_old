@@ -28,6 +28,11 @@
   ;; Get executable from releases:
   ;; https://github.com/kmonad/kmonad/releases
 
+  ;; For MacOS
+  ;; input  (iokit-name "my-keyboard-product-string")
+  ;; input  (iokit-name)
+  ;; output (kext)
+
   ;; Comment this if you want unhandled events not to be emitted
   fallthrough false
 
@@ -72,7 +77,7 @@
   tab  q    w    f    p    b    j    l    u    y    @:   esc  XX    XX   del  end  pgdn
   @csm a    r    s    t    g    m    n    e    i    o    bspc ret
   lsft x    c    d    v    z    k    h    ,    .    @-   rsft                 up
-  lctl lmet lalt           spc            ralt rmet cmp @csm             left down rght
+  lctl lmet lalt           spc            ralt rmet cmp  @csm            left down rght
 )
 
 ;; We swap to the qwerty layer when the @qwe function is called.
@@ -136,7 +141,7 @@
   - (tap-hold 0 - #(\_ XX))
   = (tap-hold 0 = #(+ XX))
   ? (tap-hold 0 ? #(? XX))
-  qot (tap-hold 0 ' #(" XX))
+  qot (tap-hold 0 ' #(" XX))  ;; "
 
   ;; Base layer (non-shift) symbols:
   ;; (We still need to tap-hold some of these so they don't block each other. See note above.)
@@ -152,7 +157,7 @@
   _    _    _    _    _    _    _    _    _    _    _    _    _          _    _    _
   _    _    _    _    _    _    _    _    _    _    _    _    _    _     mute    playpause   volu
   rght @udo _    @=   @*   @%   @$   @`   @qot @'   @;   _    _    @qwe  previoussong    nextsong    vold
-  XX   @@   @&   @?   @!   \\   @<   @9   @{   @[   /    del  _
+  XX   @@   @&   @!   @?   \\   @<   @9   @{   @[   /    del  _
   _    _    @#   @~   @^   @|   @>   @0   @}   @]   -    _                    _
   _    _    _              =              _    _    _    _               _    _    _
 )
