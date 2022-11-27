@@ -3,7 +3,9 @@
 :: Update to your local binary and .kbd path.
 :: Terminal is hidden after starting.
 :: Don't forget to add this .bat to your antivirus exceptions, as it might detect it as a false positive.
-:: Put a shortcut to this in shell:startup.
-::   https://github.com/kmonad/kmonad/blob/master/doc/faq.md#making-a-launcher
+:: Create a Basic Task in Computer Management > Task Scheduler > Create Basic Task.
+:: Point it to the .bat file, modify the rest of the settings as desired.
 
-powershell "start C:\Users\catki\Documents\dotfiles\.config\kmonad\kmonad-win.exe -Args \"C:\Users\catki\Documents\dotfiles\.config\kmonad\colemakdh_extended_windows.kbd" -WindowStyle Hidden"
+taskkill /IM kmonad-win.exe /F
+
+start "C:\Users\catki\Documents\dotfiles\.config\kmonad\kmonad-win.exe" "C:\Users\catki\Documents\dotfiles\.config\kmonad\colemakdh_extended_windows.kbd"
