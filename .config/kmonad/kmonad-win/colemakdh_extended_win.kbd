@@ -157,9 +157,9 @@
 (deflayer colemakdh-symbols
   _    _    _    _    _    _    _    _    _    _    _    _    _          _    _    _
   @sav @cut @cpy @pst _    _    _    _    _    _    _    _    _    _     mute    playpause   volu
-  @udo rght _    @#   @@   @%   @^   @`   @qot @'   @;   _    _    @qwe  previoussong    nextsong    vold
-  XX   ret  _    @=   -    @&   @~   @9   @{   @[   @-   del  _
-  _    _    _    @*   @$   @|   @!   @0   @}   @]   \\   _                    _
+  @udo rght _    @@   @#   @%   @^   @`   @qot @'   @;   _    _    @qwe  previoussong    nextsong    vold
+  XX   ret  _    @=   -    @&   @!   @9   @{   @[   @-   del  _
+  _    _    _    @*   @$   @|   @~   @0   @}   @]   \\   _                    _
   _    _    _              =              _    _    _    _               _    _    _
 )
 
