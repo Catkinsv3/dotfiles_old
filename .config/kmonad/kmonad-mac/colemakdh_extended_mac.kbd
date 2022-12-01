@@ -157,10 +157,10 @@
 (deflayer colemakdh-symbols
   _    _    _    _    _    _    _    _    _    _    _    _    _          _    _    _
   @sav @cut @cpy @pst _    _    _    _    _    _    _    _    _    _     mute    playpause   volu
-  @udo rght @%   @@   @$   @^   @#   @`   @qot @'   @;   _    _    @qwe  previoussong    nextsong    vold
-  XX   ret  _    @=   -    @~   @!   @9   @{   @[   @-   del  _
-  _    _    _    @*   _    @|   @&   @0   @}   @]   \\   _                    _
-  _    _    _              =              _    _    _    _               _    _    _
+  @udo rght @|   @&   @~   @$   @@   @`   @qot @'   @;   _    _    @qwe  previoussong    nextsong    vold
+  XX   ret  @#   =    -    @!   @<   @9   @{   @[   @-   del  _
+  _    _    @^   @=   @*   @%   @>   @0   @}   @]   \\   _                    _
+  _    _    _              _              _    _    _    _               _    _    _
 )
 
 ;; allow to return to colemakdh when pressing caps+\
