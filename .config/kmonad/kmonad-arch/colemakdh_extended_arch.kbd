@@ -77,7 +77,7 @@
   tab  q    w    f    p    b    j    l    u    y    @:   esc  XX    XX   del  end  pgdn
   @csm a    r    s    t    g    m    n    e    i    o    bspc ret
   lsft x    c    d    v    z    k    h    ,    .    /    rsft                 up
-  lmet lctl lalt           spc            ralt rctl cmp  @csm            left down rght
+  lctl lmet lalt           spc            ralt rmet cmp  @csm            left down rght
 )
 
 ;; We swap to the qwerty layer when the @qwe function is called.
