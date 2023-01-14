@@ -73,11 +73,11 @@
 ;; In this case it is a modified colemakdh. (XX blocks key press)
 (deflayer colemakdh
   esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12        ssrq slck pause
-  XX   1    2    3    4    5    6    7    8    9    0    XX   XX    XX   ins  home pgup
+  XX   1    2    3    4    5    6    7    8    9    0    XX   XX    del  ins  home pgup
   tab  q    w    f    p    b    j    l    u    y    @:   esc  XX    XX   del  end  pgdn
   @csm a    r    s    t    g    m    n    e    i    o    bspc ret
-  lsft x    c    d    v    z    k    h    ,    .    /    rsft                 up
-  lmet lctl lalt           spc            ralt rctl cmp  @csm            left down rght
+  lsft x    c    d    v    z    k    h    ,    .    /    @snp                 up
+  lmet lctl lalt           spc            @snp @snp _    @csm            left down rght
 )
 
 ;; We swap to the qwerty layer when the @qwe function is called.
@@ -158,8 +158,8 @@
   _    _    _    _    _    _    _    _    _    _    _    _    _          _    _    _
   @sav @cut @cpy @pst _    _    _    _    _    _    _    _    _    _     mute    playpause   volu
   @udo rght @|   @&   @~   @$   @@   @`   @qot @'   @;   _    _    @qwe  previoussong    nextsong    vold
-  XX   ret  @#   =    -    @!   @<   @9   @{   @[   @-   del  _
-  _    _    @^   @=   @*   @%   @>   @0   @}   @]   \\   _                    _
+  XX   ret  @#   =    -    @!   @<   @9   @{   @[   @-   _    _
+  _    down @^   @=   @*   @%   @>   @0   @}   @]   \\   _                    _
   _    _    _              _              _    _    _    _               _    _    _
 )
 
@@ -173,7 +173,7 @@
   _    _    _              _              _    _    _    _               _    _    _
 )
 
-;; TODO: remap shift layer keys that are now empty due to symbol layer.
+;; TODO: remap shift layer keys that are now empty due to symbol layer?
 ;; (deflayer shift
 ;;   _    _    _    _    _    _    _    _    _    _    _    _    _          _    _    _
 ;;   _    _    _    _    _    _    _    _    _    _    _    _    _    _     _    _    _
@@ -183,9 +183,42 @@
 ;;   _    _    _              _              _    _    _    _               _    _    _
 ;; )
 
+;; remap right shift to numpad layer
+;; (deflayer shift-numpad
+;;   _    _    _    _    _    _    _    _    _    _    _    _    _          _    _    _
+;;   _    _    _    _    _    _    _    _    _    _    _    _    _    _     _    _    _
+;;   _    _    7    8    9    -    _    _    _    _    _    _    _    _     _    _    _
+;;   _    0    4    5    6    @=   _    _    _    _    _    _    _
+;;   _    _    1    2    3    *    _    _    _    _    _    _                    _
+;;   _    _    _              _              _    _    _    _               _    _    _
+;; )
+
+;; remap right shift to numpad layer
+;; (deflayer shift-numpad
+;;   _    _    _    _    _    _    _    _    _    _    _    _    _          _    _    _
+;;   _    _    _    _    _    _    _    _    _    _    _    _    _    _     _    _    _
+;;   _    _    @*   @=   -    =    _    _    _    _    _    _    _    _     _    _    _
+;;   _    0    1    2    3    4    5    6    7    8    9    _    _
+;;   _    5    6    7    8    9    _    _    _    _    _    _                    _
+;;   _    _    _              _              _    _    _    _               _    _    _
+;; )
+
+;; remap right shift to numpad layer
+(deflayer shift-numpad
+  _    _    _    _    _    _    _    _    _    _    _    _    _          _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _     _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _     _    _    _
+  _    7    5    3    1    _    _    0    2    4    6    _    _
+  _    _    _    9    _    _    _    8    _    _    _    _                    _
+  _    _    _              _              _    _    _    _               _    _    _
+)
+;; https://www.reddit.com/r/ErgoMechKeyboards/comments/u4a1lp/where_do_you_put_your_numbers_without_a_dedicated/
+;; https://ux.stackexchange.com/questions/16666/why-do-numpads-on-keyboards-and-phones-have-reversed-layouts
+
 ;; Hold down to activate caps extend layer
 (defalias csm (layer-toggle colemakdh-symbols))
 (defalias qsm (layer-toggle qwerty-symbols))
+(defalias snp (layer-toggle shift-numpad))
 
 ;; Tap to swap out base layer between qwerty and colemakdh
 (defalias qwe (layer-switch qwerty))
