@@ -86,6 +86,7 @@ plugins=(
     zsh-autosuggestions
     zsh-syntax-highlighting
     zsh-z
+    zsh-nvm
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -128,6 +129,20 @@ alias pc="open_pycharm"
 alias shutdown="sudo shutdown now"
 alias reboot="sudo reboot now"
 
+alias pip3="pip"
+
+# Contains pycharm / webstorm binaries
+export PATH="$PATH:/home/catkins/.local/share/JetBrains/Toolbox/scripts"
+# Contains toolbox binary
+export PATH="$PATH:/home/catkins/.local/share/JetBrains/Toolbox/bin"
+
+# Contains pip/pip3 binaries
+export PATH="$PATH:/home/catkins/.local/bin"
+
+# Private internet access binaries
+export PATH="$PATH:/opt/piavpn/bin" # /pia-client only, not .sh files?
+
+
 export FZF_DEFAULT_COMMAND='fdfind --type f'
 export FZF_DEFAULT_OPTS="--layout=reverse --inline-info --height=80%"
 
@@ -135,3 +150,7 @@ export FZF_DEFAULT_OPTS="--layout=reverse --inline-info --height=80%"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

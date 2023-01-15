@@ -195,6 +195,8 @@ bindsym $mod+Shift+Right move right
 
 
 ### Workspaces ###
+bindsym $mod+Alt+Right workspace next
+bindsym $mod+Alt+Left workspace prev
 
 # Switch to workspace
 bindsym $mod+1 workspace number 1
@@ -204,8 +206,8 @@ bindsym $mod+4 workspace number 4
 bindsym $mod+5 workspace number 5
 bindsym $mod+6 workspace number 6
 bindsym $mod+7 workspace number 7
-#  bindsym $mod+8 workspace number 8
-#  bindsym $mod+9 workspace number 9
+bindsym $mod+8 workspace number 8
+bindsym $mod+9 workspace number 9
 #  bindsym $mod+0 workspace number 10
 
 # Move focused container to workspace
@@ -216,8 +218,8 @@ bindsym $mod+Shift+4 move container to workspace number 4
 bindsym $mod+Shift+5 move container to workspace number 5
 bindsym $mod+Shift+6 move container to workspace number 6
 bindsym $mod+Shift+7 move container to workspace number 7
-#  bindsym $mod+Shift+8 move container to workspace number 8
-#  bindsym $mod+Shift+9 move container to workspace number 9
+bindsym $mod+Shift+8 move container to workspace number 8
+bindsym $mod+Shift+9 move container to workspace number 9
 #  bindsym $mod+Shift+0 move container to workspace number 10
 # Note: workspaces can have any name you want, not just numbers.
 # We just use 1-10 as the default.
@@ -271,11 +273,11 @@ bindsym XF86AudioPrev exec playerctl previous
 # You can send windows there and get them back later.
 
 # Move the currently focused window to the scratchpad
-bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+minus move scratchpad
 
 # Show the next scratchpad window or hide the focused scratchpad window.
 # If there are multiple scratchpad windows, this command cycles through them.
-bindsym $mod+minus scratchpad show
+bindsym $mod+equal scratchpad show
 
 
 
@@ -324,6 +326,15 @@ mode "resize" {
 
 # Clipboard manager
 exec copyq
+
+exec_always /home/catkins/.local/share/JetBrains/Toolbox/bin/jetbrains-toolbox
+for_window [title="JetBrains Toolbox"] floating disable, move container to workspace 9
+
+exec_always discord
+for_window [class="discord"] floating enable, move scratchpad
+
+exec_always /opt/piavpn/bin/pia-client
+for_window [title="Private Internet Access"] move container to workspace 9
 
 # Notifications
 # exec mako

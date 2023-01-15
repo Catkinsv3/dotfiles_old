@@ -73,7 +73,7 @@
 ;; In this case it is a modified colemakdh. (XX blocks key press)
 (deflayer colemakdh
   esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12        ssrq slck pause
-  XX   1    2    3    4    5    6    7    8    9    0    XX   XX    del  ins  home pgup
+  XX   1    2    3    4    5    6    7    8    9    0    -    =     del  ins  home pgup
   tab  q    w    f    p    b    j    l    u    y    @:   esc  XX    XX   del  end  pgdn
   @csm a    r    s    t    g    m    n    e    i    o    bspc ret
   lsft x    c    d    v    z    k    h    ,    .    /    @snp                 up
