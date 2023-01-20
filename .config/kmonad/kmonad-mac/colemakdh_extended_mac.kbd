@@ -47,7 +47,7 @@
   tab  q    w    e    r    t    y    u    i    o    p    [    ]    \     del  end  pgdn
   caps a    s    d    f    g    h    j    k    l    ;    '    ret
   lsft z    x    c    v    b    n    m    ,    .    /    rsft                 up
-  lctl lmet lalt           spc            ralt rmet cmp  rctl            left down rght
+  lctl lmet lalt            spc            ralt rmet cmp rctl            left down rght
 )
 
 ;; Empty ANSI TKL template.
@@ -73,8 +73,8 @@
 ;; In this case it is a modified colemakdh. (XX blocks key press)
 (deflayer colemakdh
   esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12        ssrq slck pause
-  XX   1    2    3    4    5    6    7    8    9    0    XX   XX    del  ins  home pgup
-  tab  q    w    f    p    b    j    l    u    y    @:   esc  XX    XX   del  end  pgdn
+  _    1    2    3    4    5    6    7    8    9    0    _    _     del  ins  home pgup
+  tab  q    w    f    p    b    j    l    u    y    @:   esc  _     _    del  end  pgdn
   @csm a    r    s    t    g    m    n    e    i    o    bspc ret
   lsft x    c    d    v    z    k    h    ,    .    /    @snp                 up
   lctl lmet lalt           spc            @snp @snp _    @csm            left down rght
@@ -88,7 +88,7 @@
   tab  q    w    e    r    t    y    u    i    o    p    [    ]    \     del  end  pgdn
   @qsm a    s    d    f    g    h    j    k    l    ;    '    ret
   lsft z    x    c    v    b    n    m    ,    .    /    rsft                 up
-  lctl lmet lalt           spc            ralt rctl cmp  @qsm            left down rght
+  lctl lmet lalt           spc            ralt rmet cmp  @qsm            left down rght
 )
 
 ;; left-control shortcuts
