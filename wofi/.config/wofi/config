@@ -1,0 +1,14 @@
+show=drun
+width=50%
+height=50%
+prompt=Search...
+normal_window=true
+term=ptyxis
+location=center
+allow_markup=true
+no_actions=true
+lines=10
+always_parse_args=true
+show_all=true
+print_command=true
+layer=overlay
